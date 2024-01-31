@@ -67,7 +67,6 @@ export default class App extends LightningElement {
      * Assigns appropriate classes to progress bar items
      */
     get progressBarItemClasses() {
-        console.log('running class distributor');
         let classes = 'progress-bar-item';
 
         if (this.isCurrentPage) classes += ' current-page';
