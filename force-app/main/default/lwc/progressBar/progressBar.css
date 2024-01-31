@@ -60,8 +60,10 @@
     background: var(--completedPageColor);
 }
 
-/* overriding default current page color */
-.progress-bar-item.current-page.completed-page {
+/* prioritizing completed page color */
+.progress-bar-item.current-page.completed-page,
+.progress-bar-item.previous-page.completed-page,
+.progress-bar-item.future-page.completed-page {
     background: var(--completedPageColor);
 }
 
