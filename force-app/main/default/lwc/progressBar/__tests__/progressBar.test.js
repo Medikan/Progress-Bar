@@ -150,6 +150,50 @@ describe('c-progress-bar', () => {
 		})
 	})
 
+	// Completed pages are highlighted
+	it('should add disabled class to nonvisited pages', () => {
+		// Arrange
+		const pageNames = '1,2,3,4,5'
+		const currentPage = '3'
+		const completedPages = '1'
+		const visitedPages = '2'
+
+		const allowSkippingPages = false
+
+		// Act
+		const element = createElement('c-progress-bar', {
+			is: ProgressBar,
+		})
+
+		Object.assign(element, {
+			pageNames: pageNames,
+			currentPage: currentPage,
+			completedPages: completedPages,
+			visitedPages: visitedPages,
+			allowSkippingPages: allowSkippingPages,
+		})
+
+		document.body.appendChild(element)
+
+		// Assert
+		const progressItems =
+			element.shadowRoot.querySelectorAll('.progress-bar-item')
+
+		progressItems.forEach((item, index) => {
+			let pageName = pageNames.split(',')[index]
+
+			if (
+				visitedPages.split(',').some((x) => x === pageName) ||
+				completedPages.split(',').some((x) => x === pageName) ||
+				currentPage === pageName
+			) {
+				expect(item.classList.contains('disabled')).toBe(false)
+			} else {
+				expect(item.classList.contains('disabled')).toBe(true)
+			}
+		})
+	})
+
 	// numberOfPages is not provided
 	it('should handle missing numberOfPages prop', () => {
 		// Arrange

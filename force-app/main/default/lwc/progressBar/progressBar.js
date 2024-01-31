@@ -10,12 +10,14 @@ import { FlowNavigationNextEvent } from 'lightning/flowSupport'
  * @prop currentPage
  * @prop visitedPages
  * @prop completedPages
+ * @prop allowSkippingPages
  */
 export default class App extends LightningElement {
 	@api pageNames
 	@api currentPage
 	@api visitedPages
 	@api completedPages
+	@api allowSkippingPages
 
 	_pageNavigation
 
@@ -78,6 +80,14 @@ export default class App extends LightningElement {
 		else if (this.isCompletedPage) classes += ' completed-page'
 		else if (this.isVisitedPage) classes += ' visited-page'
 
+		if (
+			!this.allowSkippingPages &&
+			!this.isVisitedPage &&
+			!this.isCompletedPage &&
+			!this.isCurrentPage
+		)
+			classes += ' disabled'
+
 		return classes
 	}
 
@@ -122,7 +132,16 @@ export default class App extends LightningElement {
 	 * Make sure the element calling this contains the data-page attribute with the desired page navigation as the value
 	 */
 	setPageNavigation(event) {
-		this._pageNavigation = event.currentTarget.dataset.page
+		let targetPage = event.currentTarget.dataset.page
+
+		if (
+			!this.allowSkippingPages &&
+			this.visitedPagesArray.indexOf(targetPage) === -1
+		) {
+			return
+		}
+
+		this._pageNavigation = targetPage
 		this.navigateToNextPage()
 	}
 

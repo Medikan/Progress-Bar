@@ -37,6 +37,14 @@
 				description="A comma-separated string containing the pages that have been visited. It's recommended to assign this to a variable that you update as users finish screens"
 			/>
             <property
+				name="allowSkippingPages"
+				type="Boolean"
+				label="Allow Skipping to Non-Visited Pages"
+				description="Should the user be allowed to use the progress bar to visit pages not naturally visited through the flow. This would allow the user, for example, to use the progress bar to visit the last page immediately after loading the flow. Works best for non-sequential flows."
+				required="true"
+				default="true"
+			/>
+            <property
 				name="pageNavigation"
 				type="String"
 				label="Page to Navigate To"

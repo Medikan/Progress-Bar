@@ -44,6 +44,15 @@
 	position: relative;
 }
 
+.progress-bar-item.disabled,
+.progress-bar-item.disabled > * {
+	cursor: not-allowed;
+}
+
+.progress-bar-item.disabled:hover {
+	box-shadow: none;
+}
+
 .progress-bar-item:hover {
 	box-shadow: inset #b6b6b6 1px 1px 5px 1px;
 }
