@@ -89,8 +89,7 @@ export default class App extends LightningElement {
      * Checks if the current progress bar item iteration is for a completed pages
      */
     get isCompletedPage() {
-        const currentPageIndex = this.pageNamesArray.indexOf(this.currentPage);
-        return this.completedPagesArray.some(page => Number(page) === currentPageIndex);
+        return this.completedPagesArray.some(page => page === this.pageNamesArray[this.currentPageOfForLoop]);
     }
 
     /**
