@@ -16,6 +16,8 @@
                 default="1" />
             <property name="completedPages" type="String" label="Completed Pages"
                 description="A comma-separated string containing the pages that have been completed. It's recommended to assign this to a variable that you update as users finish screens"></property>
+            <property name="pageNames" type="String" label="Page Names"
+                description="A comma-separated string containing (in order) the names for each of the progress bar sections"></property>
             <property name="pageNavigation" type="Integer" label="Page to Navigate To"
                 description="Holds the value of the page the user wishes to navigate to through the progress bar"
                 role="outputOnly" />

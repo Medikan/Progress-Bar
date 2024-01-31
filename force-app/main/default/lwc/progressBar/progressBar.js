@@ -7,11 +7,14 @@ import { FlowNavigationNextEvent } from 'lightning/flowSupport';
  * @prop numberOfPages
  * @prop currentPage
  * @prop completedPages
+ * @prop pageNames
  */
 export default class App extends LightningElement {
     @api numberOfPages;
     @api currentPage;
     @api completedPages;
+    @api pageNames;
+
     _pageNavigation;
 
     @api get pageNavigation() {
@@ -29,6 +32,20 @@ export default class App extends LightningElement {
      */
     get pagesArray() {
         return Array.from({ length: this.numberOfPages }, ((_, i) => i + 1));
+    }
+
+    /**
+     * Optional. Creates an array out of the passed in comma separated list and uses it for progress bar section names
+     */
+    get pageNamesArray() {
+        return this.pageNames?.split(',') ?? [];
+    }
+
+    /**
+     * Gets the label for the progress bar section. Either the name of the page from the passed in property or returns the page number
+     */
+    get label() {
+        return this.pageNamesArray[this.currentPageOfForLoop - 1] ?? this.currentPageOfForLoop;
     }
 
     /**
