@@ -15,10 +15,9 @@ describe('c-progress-bar', () => {
 
     it('should initialize', () => {
         // Arrange
-        const numberOfPages = 5;
-        const currentPage = 3;
+        const pageNames = "1,2,3,4,5";
+        const currentPage = "3";
         const completedPages = '1,2';
-        const pageNavigation = '';
 
         // Act
         const element = createElement('c-progress-bar', {
@@ -26,10 +25,9 @@ describe('c-progress-bar', () => {
         });
 
         Object.assign(element, {
-            numberOfPages: numberOfPages,
+            pageNames: pageNames,
             currentPage: currentPage,
             completedPages: completedPages,
-            pageNavigation: pageNavigation,
         });
 
         document.body.appendChild(element);
@@ -42,10 +40,9 @@ describe('c-progress-bar', () => {
     // Progress bar items are displayed correctly
     it('should display progress bar items correctly', () => {
         // Arrange
-        const numberOfPages = 5;
-        const currentPage = 3;
+        const pageNames = "1,2,3,4,5";
+        const currentPage = "3";
         const completedPages = '1,2';
-        const pageNavigation = '';
 
         // Act
         const element = createElement('c-progress-bar', {
@@ -53,23 +50,23 @@ describe('c-progress-bar', () => {
         });
 
         Object.assign(element, {
-            numberOfPages: numberOfPages,
+            pageNames: pageNames,
             currentPage: currentPage,
             completedPages: completedPages,
-            pageNavigation: pageNavigation,
         });
 
         document.body.appendChild(element);
 
         // Assert
         const progressItems = element.shadowRoot.querySelectorAll('.progress-bar-item');
-        expect(progressItems.length).toBe(numberOfPages);
+        expect(progressItems.length).toBe(pageNames.split(",").length);
 
+        let currentPageIndex = pageNames.split(',').indexOf(currentPage);
         progressItems.forEach((item, index) => {
-            if (index + 1 === currentPage) {
+            if (index === currentPageIndex) {
                 expect(item.classList.contains('current-page')).toBe(true);
-            } else if (index + 1 < currentPage) {
-                expect(item.classList.contains('completed-page')).toBe(true);
+            } else if (index < currentPageIndex) {
+                expect(item.classList.contains('previous-page')).toBe(true);
             } else {
                 expect(item.classList.contains('future-page')).toBe(true);
             }
@@ -79,10 +76,9 @@ describe('c-progress-bar', () => {
     // Current page is highlighted
     it('should highlight current page', () => {
         // Arrange
-        const numberOfPages = 5;
-        const currentPage = 3;
+        const pageNames = "1,2,3,4,5";
+        const currentPage = "3";
         const completedPages = '1,2';
-        const pageNavigation = '';
 
         // Act
         const element = createElement('c-progress-bar', {
@@ -90,18 +86,19 @@ describe('c-progress-bar', () => {
         });
 
         Object.assign(element, {
-            numberOfPages: numberOfPages,
+            pageNames: pageNames,
             currentPage: currentPage,
             completedPages: completedPages,
-            pageNavigation: pageNavigation,
         });
 
         document.body.appendChild(element);
 
         // Assert
         const progressItems = element.shadowRoot.querySelectorAll('.progress-bar-item');
+
+        let currentPageIndex = pageNames.split(',').indexOf(currentPage);
         progressItems.forEach((item, index) => {
-            if (index + 1 === currentPage) {
+            if (index === currentPageIndex) {
                 expect(item.classList.contains('current-page')).toBe(true);
             } else {
                 expect(item.classList.contains('current-page')).toBe(false);
@@ -112,10 +109,9 @@ describe('c-progress-bar', () => {
     // Completed pages are highlighted
     it('should highlight completed pages', () => {
         // Arrange
-        const numberOfPages = 5;
-        const currentPage = 3;
+        const pageNames = "1,2,3,4,5";
+        const currentPage = "3";
         const completedPages = '1,2';
-        const pageNavigation = '';
 
         // Act
         const element = createElement('c-progress-bar', {
@@ -123,18 +119,19 @@ describe('c-progress-bar', () => {
         });
 
         Object.assign(element, {
-            numberOfPages: numberOfPages,
+            pageNames: pageNames,
             currentPage: currentPage,
             completedPages: completedPages,
-            pageNavigation: pageNavigation,
         });
 
         document.body.appendChild(element);
 
         // Assert
         const progressItems = element.shadowRoot.querySelectorAll('.progress-bar-item');
+
+        let currentPageIndex = pageNames.split(',').indexOf(currentPage);
         progressItems.forEach((item, index) => {
-            if (index + 1 < currentPage) {
+            if (index < currentPageIndex) {
                 expect(item.classList.contains('completed-page')).toBe(true);
             } else {
                 expect(item.classList.contains('completed-page')).toBe(false);
@@ -146,10 +143,9 @@ describe('c-progress-bar', () => {
     // numberOfPages is not provided
     it('should handle missing numberOfPages prop', () => {
         // Arrange
-        const numberOfPages = 0;
-        const currentPage = 3;
+        const pageNames = null;
+        const currentPage = "3";
         const completedPages = '1,2';
-        const pageNavigation = '';
 
         // Act
         const element = createElement('c-progress-bar', {
@@ -157,10 +153,9 @@ describe('c-progress-bar', () => {
         });
 
         Object.assign(element, {
-            numberOfPages: numberOfPages,
+            pageNames: pageNames,
             currentPage: currentPage,
             completedPages: completedPages,
-            pageNavigation: pageNavigation,
         });
 
         document.body.appendChild(element);
@@ -173,10 +168,9 @@ describe('c-progress-bar', () => {
     // currentPage is not provided
     it('should handle missing currentPage prop', () => {
         // Arrange
-        const numberOfPages = 5;
-        const currentPage = 0;
+        const pageNames = "1,2,3,4,5";
+        const currentPage = "";
         const completedPages = '1,2';
-        const pageNavigation = '';
 
         // Act
         const element = createElement('c-progress-bar', {
@@ -184,10 +178,9 @@ describe('c-progress-bar', () => {
         });
 
         Object.assign(element, {
-            numberOfPages: numberOfPages,
+            pageNames: pageNames,
             currentPage: currentPage,
             completedPages: completedPages,
-            pageNavigation: pageNavigation,
         });
 
         document.body.appendChild(element);
@@ -200,9 +193,8 @@ describe('c-progress-bar', () => {
     // completedPages is not provided
     it('should handle missing completedPages prop', () => {
         // Arrange
-        const numberOfPages = 5;
-        const currentPage = 3;
-        const pageNavigation = '';
+        const pageNames = "1,2,3,4,5";
+        const currentPage = "3";
 
         // Act
         const element = createElement('c-progress-bar', {
@@ -210,10 +202,9 @@ describe('c-progress-bar', () => {
         });
 
         Object.assign(element, {
-            numberOfPages: numberOfPages,
+            pageNames: pageNames,
             currentPage: currentPage,
             completedPages: undefined,
-            pageNavigation: pageNavigation,
         });
 
         document.body.appendChild(element);
