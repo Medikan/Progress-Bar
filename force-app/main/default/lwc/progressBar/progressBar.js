@@ -4,16 +4,14 @@ import { FlowNavigationNextEvent } from 'lightning/flowSupport';
 /**
  * Progress Bar component for Screen Flows
  * 
- * @prop numberOfPages
+ * @prop pageNames
  * @prop currentPage
  * @prop completedPages
- * @prop pageNames
  */
 export default class App extends LightningElement {
-    @api numberOfPages;
+    @api pageNames;
     @api currentPage;
     @api completedPages;
-    @api pageNames;
 
     _pageNavigation;
 
@@ -26,13 +24,6 @@ export default class App extends LightningElement {
      * Needed to conditionally add/remove certain properties
      */
     currentPageOfForLoop = 0;
-
-    /**
-     * Splits our numberOfPages into an iteratable array
-     */
-    get pagesArray() {
-        return Array.from({ length: this.numberOfPages }, ((_, i) => i + 1));
-    }
 
     /**
      * Optional. Creates an array out of the passed in comma separated list and uses it for progress bar section names
@@ -82,24 +73,24 @@ export default class App extends LightningElement {
      * Checks if the current progress bar item iteration is for the current page
      */
     get isCurrentPage() {
-        const currentPage = Number(this.currentPage);
-        return Number(this.currentPageOfForLoop) === currentPage;
+        const currentPageIndex = this.pageNamesArray.indexOf(this.currentPage);
+        return Number(this.currentPageOfForLoop) === currentPageIndex;
     }
 
     /**
      * Checks if the current progress bar item iteration is for previous pages
      */
     get isBeforeCurrentPage() {
-        const currentPage = Number(this.currentPage);
-        return Number(this.currentPageOfForLoop) < currentPage;
+        const currentPageIndex = this.pageNamesArray.indexOf(this.currentPage);
+        return Number(this.currentPageOfForLoop) < currentPageIndex;
     }
 
     /**
      * Checks if the current progress bar item iteration is for a completed pages
      */
     get isCompletedPage() {
-        const currentPage = Number(this.currentPageOfForLoop);
-        return this.completedPagesArray.some(page => Number(page) === currentPage);
+        const currentPageIndex = this.pageNamesArray.indexOf(this.currentPage);
+        return this.completedPagesArray.some(page => Number(page) === currentPageIndex);
     }
 
     /**

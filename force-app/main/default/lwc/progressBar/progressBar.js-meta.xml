@@ -8,17 +8,15 @@
     </targets>
     <targetConfigs>
         <targetConfig targets="lightning__FlowScreen">
-            <property name="numberOfPages" type="Integer" label="Number of Pages"
-                description="Number of total pages for the progress bar to keep track of"
-                required="true" default="1" />
-            <property name="currentPage" type="Integer" label="Current Page"
+            <property name="pageNames" type="String" label="Page Names"
+                description="A comma-separated string containing (in order) the names for each of the progress bar sections"
+                required="true" default="1,2,3,4,5"></property>
+            <property name="currentPage" type="String" label="Current Page"
                 description="The current page this progress bar is living on" required="true"
                 default="1" />
             <property name="completedPages" type="String" label="Completed Pages"
                 description="A comma-separated string containing the pages that have been completed. It's recommended to assign this to a variable that you update as users finish screens"></property>
-            <property name="pageNames" type="String" label="Page Names"
-                description="A comma-separated string containing (in order) the names for each of the progress bar sections"></property>
-            <property name="pageNavigation" type="Integer" label="Page to Navigate To"
+            <property name="pageNavigation" type="String" label="Page to Navigate To"
                 description="Holds the value of the page the user wishes to navigate to through the progress bar"
                 role="outputOnly" />
         </targetConfig>

@@ -4,13 +4,13 @@
         <div class="progress-bar-start-cap"></div>
 
         <!-- Loop through all the pages and create the progress bar items for each page -->
-        <template for:each={pagesArray} for:item="page" for:index="index">
-            <!-- hacky way to keep track of current index of loop so I can conditionally show certain elements -->
-            <div key={page} style="display:none;">{incrementIndexTracker}</div>
-
-            <button key={page} data-page={page} onclick={setPageNavigation} class={progressBarItemClasses}>
-                <label>{label}</label>
+        <template for:each={pageNamesArray} for:item="pageName" for:index="index">
+            <button key={pageName} data-page={pageName} onclick={setPageNavigation} class={progressBarItemClasses}>
+                <label>{pageName}</label>
             </button>
+
+            <!-- hacky way to keep track of current index of loop so I can conditionally show certain elements -->
+            <div key={pageName} style="display:none;">{incrementIndexTracker}</div>
         </template>
 
         <div class="progress-bar-end-cap"></div>
