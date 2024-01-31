@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>59.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>Progress Bar</masterLabel>
+    <targets>
+        <target>lightning__FlowScreen</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__FlowScreen">
+            <property name="numberOfPages" type="Integer" label="Number of Pages"
+                description="Number of total pages for the progress bar to keep track of"
+                required="true" default="1" />
+            <property name="currentPage" type="Integer" label="Current Page"
+                description="The current page this progress bar is living on" required="true"
+                default="1" />
+            <property name="completedPages" type="String" label="Completed Pages"
+                description="A comma-separated string containing the pages that have been completed. It's recommended to assign this to a variable that you update as users finish screens"></property>
+            <property name="pageNavigation" type="Integer" label="Page to Navigate To"
+                description="Holds the value of the page the user wishes to navigate to through the progress bar"
+                role="outputOnly" />
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>
