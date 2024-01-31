@@ -8,29 +8,9 @@
             <!-- hacky way to keep track of current index of loop so I can conditionally show certain elements -->
             <div key={page} style="display:none;">{incrementIndexTracker}</div>
 
-            <!-- Different types of buttons to output for the progress bar -->
-            <!-- lots of repeated code here, so hopefully there's a better approach... -->
-            <template lwc:if={isCompletedPage}>
-                <button key={page} data-page={page} onclick={setPageNavigation}
-                    class="progress-bar-item completed-page">
-                    <label>{page}</label>
-                </button>
-            </template>
-            <template lwc:elseif={isBeforeCurrentPage}>
-                <button key={page} data-page={page} onclick={setPageNavigation} class="progress-bar-item previous-page">
-                    <label>{page}</label>
-                </button>
-            </template>
-            <template lwc:elseif={isCurrentPage}>
-                <button key={page} data-page={page} onclick={setPageNavigation} class="progress-bar-item current-page">
-                    <label>{page}</label>
-                </button>
-            </template>
-            <template lwc:else>
-                <button key={page} data-page={page} onclick={setPageNavigation} class="progress-bar-item future-page">
-                    <label>{page}</label>
-                </button>
-            </template>
+            <button key={page} data-page={page} onclick={setPageNavigation} class={progressBarItemClasses}>
+                <label>{page}</label>
+            </button>
         </template>
 
         <div class="progress-bar-end-cap"></div>

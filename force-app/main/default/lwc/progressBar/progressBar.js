@@ -47,9 +47,24 @@ export default class App extends LightningElement {
     }
 
     /**
+     * Assigns appropriate classes to progress bar items
+     */
+    get progressBarItemClasses() {
+        let classes = 'progress-bar-item';
+
+        if (this.isCurrentPage) classes += ' current-page';
+        else if (this.isBeforeCurrentPage) classes += ' previous-page';
+        else classes += ' future-page';
+
+        if (this.isCompletedPage) classes += ' completed-page';
+
+        return classes;
+    }
+
+    /**
      * Checks if the current progress bar item iteration is for the current page
      */
-    get isCurrentPage() {
+    isCurrentPage() {
         const currentPage = Number(this.currentPage);
         return Number(this.currentPageOfForLoop) === currentPage;
     }
@@ -57,7 +72,7 @@ export default class App extends LightningElement {
     /**
      * Checks if the current progress bar item iteration is for previous pages
      */
-    get isBeforeCurrentPage() {
+    isBeforeCurrentPage() {
         const currentPage = Number(this.currentPage);
         return Number(this.currentPageOfForLoop) < currentPage;
     }
@@ -65,7 +80,7 @@ export default class App extends LightningElement {
     /**
      * Checks if the current progress bar item iteration is for a completed pages
      */
-    get isCompletedPage() {
+    isCompletedPage() {
         const currentPage = Number(this.currentPageOfForLoop);
         return this.completedPagesArray.some(page => Number(page) === currentPage);
     }
