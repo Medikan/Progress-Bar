@@ -18,6 +18,7 @@ describe('c-progress-bar', () => {
 		const pageNames = '1,2,3,4,5'
 		const currentPage = '3'
 		const completedPages = '1'
+		const visitedPages = '2'
 
 		// Act
 		const element = createElement('c-progress-bar', {
@@ -28,12 +29,12 @@ describe('c-progress-bar', () => {
 			pageNames: pageNames,
 			currentPage: currentPage,
 			completedPages: completedPages,
+			visitedPages: visitedPages,
 		})
 
 		document.body.appendChild(element)
 
 		// Assert
-		// const div = element.shadowRoot.querySelector('div');
 		expect(1).toBe(1)
 	})
 
@@ -42,7 +43,8 @@ describe('c-progress-bar', () => {
 		// Arrange
 		const pageNames = '1,2,3,4,5'
 		const currentPage = '3'
-		const completedPages = '1,2'
+		const completedPages = '1'
+		const visitedPages = '2'
 
 		// Act
 		const element = createElement('c-progress-bar', {
@@ -53,6 +55,7 @@ describe('c-progress-bar', () => {
 			pageNames: pageNames,
 			currentPage: currentPage,
 			completedPages: completedPages,
+			visitedPages: visitedPages,
 		})
 
 		document.body.appendChild(element)
@@ -64,12 +67,12 @@ describe('c-progress-bar', () => {
 
 		let currentPageIndex = pageNames.split(',').indexOf(currentPage)
 		progressItems.forEach((item, index) => {
+			let pageName = pageNames.split(',')[index]
+
 			if (index === currentPageIndex) {
 				expect(item.classList.contains('current-page')).toBe(true)
-			} else if (index < currentPageIndex) {
-				expect(item.classList.contains('previous-page')).toBe(true)
-			} else {
-				expect(item.classList.contains('future-page')).toBe(true)
+			} else if (visitedPages.split(',').some((x) => x === pageName)) {
+				expect(item.classList.contains('visited-page')).toBe(true)
 			}
 		})
 	})
@@ -79,7 +82,8 @@ describe('c-progress-bar', () => {
 		// Arrange
 		const pageNames = '1,2,3,4,5'
 		const currentPage = '3'
-		const completedPages = '1,2'
+		const completedPages = '1'
+		const visitedPages = '2'
 
 		// Act
 		const element = createElement('c-progress-bar', {
@@ -90,6 +94,7 @@ describe('c-progress-bar', () => {
 			pageNames: pageNames,
 			currentPage: currentPage,
 			completedPages: completedPages,
+			visitedPages: visitedPages,
 		})
 
 		document.body.appendChild(element)
@@ -113,7 +118,8 @@ describe('c-progress-bar', () => {
 		// Arrange
 		const pageNames = '1,2,3,4,5'
 		const currentPage = '3'
-		const completedPages = '1,2'
+		const completedPages = '1'
+		const visitedPages = '2'
 
 		// Act
 		const element = createElement('c-progress-bar', {
@@ -124,6 +130,7 @@ describe('c-progress-bar', () => {
 			pageNames: pageNames,
 			currentPage: currentPage,
 			completedPages: completedPages,
+			visitedPages: visitedPages,
 		})
 
 		document.body.appendChild(element)
@@ -132,9 +139,10 @@ describe('c-progress-bar', () => {
 		const progressItems =
 			element.shadowRoot.querySelectorAll('.progress-bar-item')
 
-		let currentPageIndex = pageNames.split(',').indexOf(currentPage)
 		progressItems.forEach((item, index) => {
-			if (index < currentPageIndex) {
+			let pageName = pageNames.split(',')[index]
+
+			if (completedPages.split(',').some((x) => x === pageName)) {
 				expect(item.classList.contains('completed-page')).toBe(true)
 			} else {
 				expect(item.classList.contains('completed-page')).toBe(false)
@@ -147,7 +155,8 @@ describe('c-progress-bar', () => {
 		// Arrange
 		const pageNames = null
 		const currentPage = '3'
-		const completedPages = '1,2'
+		const completedPages = '1'
+		const visitedPages = '2'
 
 		// Act
 		const element = createElement('c-progress-bar', {
@@ -158,6 +167,7 @@ describe('c-progress-bar', () => {
 			pageNames: pageNames,
 			currentPage: currentPage,
 			completedPages: completedPages,
+			visitedPages: visitedPages,
 		})
 
 		document.body.appendChild(element)
@@ -173,7 +183,8 @@ describe('c-progress-bar', () => {
 		// Arrange
 		const pageNames = '1,2,3,4,5'
 		const currentPage = ''
-		const completedPages = '1,2'
+		const completedPages = '1'
+		const visitedPages = '2'
 
 		// Act
 		const element = createElement('c-progress-bar', {
@@ -184,6 +195,7 @@ describe('c-progress-bar', () => {
 			pageNames: pageNames,
 			currentPage: currentPage,
 			completedPages: completedPages,
+			visitedPages: visitedPages,
 		})
 
 		document.body.appendChild(element)
@@ -200,6 +212,7 @@ describe('c-progress-bar', () => {
 		// Arrange
 		const pageNames = '1,2,3,4,5'
 		const currentPage = '3'
+		const visitedPages = '2'
 
 		// Act
 		const element = createElement('c-progress-bar', {
@@ -210,6 +223,7 @@ describe('c-progress-bar', () => {
 			pageNames: pageNames,
 			currentPage: currentPage,
 			completedPages: undefined,
+			visitedPages: visitedPages,
 		})
 
 		document.body.appendChild(element)
