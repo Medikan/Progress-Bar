@@ -1,77 +1,77 @@
 .progress-bar-wrap {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    overflow-x: scroll;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  overflow-x: scroll;
 
-    --outlineColor: #686868;
-    --thickness: 5px;
-    --completedPageColor: #23ff23;
-    --previousPageColor: yellow;
-    --currentPageColor: yellow;
-    --futurePageColor: #f1f1f1;
+  --outlineColor: #686868;
+  --thickness: 5px;
+  --completedPageColor: #23ff23;
+  --previousPageColor: yellow;
+  --currentPageColor: yellow;
+  --futurePageColor: #f1f1f1;
 }
 
 .progress-bar-start-cap {
-    width: 25px;
-    background: var(--completedPageColor);
-    border-top: var(--thickness) solid var(--outlineColor);
-    border-bottom: var(--thickness) solid var(--outlineColor);
-    border-left: var(--thickness) solid var(--outlineColor);
-    border-radius: 50% 0 0 50%;
-    flex-shrink: 0;
+  width: 25px;
+  background: var(--completedPageColor);
+  border-top: var(--thickness) solid var(--outlineColor);
+  border-bottom: var(--thickness) solid var(--outlineColor);
+  border-left: var(--thickness) solid var(--outlineColor);
+  border-radius: 50% 0 0 50%;
+  flex-shrink: 0;
 }
 
 .progress-bar-end-cap {
-    width: 25px;
-    background: var(--futurePageColor);
-    border-top: var(--thickness) solid var(--outlineColor);
-    border-right: var(--thickness) solid var(--outlineColor);
-    border-bottom: var(--thickness) solid var(--outlineColor);
-    border-radius: 0 50% 50% 0;
-    flex-shrink: 0;
+  width: 25px;
+  background: var(--futurePageColor);
+  border-top: var(--thickness) solid var(--outlineColor);
+  border-right: var(--thickness) solid var(--outlineColor);
+  border-bottom: var(--thickness) solid var(--outlineColor);
+  border-radius: 0 50% 50% 0;
+  flex-shrink: 0;
 }
 
 .progress-bar-item {
-    width: 100%;
-    max-width: 100px;
-    background: white;
-    border: none;
-    border-radius: 0;
-    border-bottom: var(--thickness) solid var(--outlineColor);
-    border-top: var(--thickness) solid var(--outlineColor);
-    cursor: pointer;
-    position: relative;
+  width: 100%;
+  max-width: 100px;
+  background: white;
+  border: none;
+  border-radius: 0;
+  border-bottom: var(--thickness) solid var(--outlineColor);
+  border-top: var(--thickness) solid var(--outlineColor);
+  cursor: pointer;
+  position: relative;
 }
 
 .progress-bar-item:hover {
-    box-shadow: inset #b6b6b6 1px 1px 5px 1px;
+  box-shadow: inset #b6b6b6 1px 1px 5px 1px;
 }
 
-.progress-bar-item>label {
-    cursor: pointer;
+.progress-bar-item > label {
+  cursor: pointer;
 }
 
 .progress-bar-item.previous-page {
-    background: var(--previousPageColor);
+  background: var(--previousPageColor);
 }
 
 .progress-bar-item.completed-page {
-    background: var(--completedPageColor);
+  background: var(--completedPageColor);
 }
 
 /* prioritizing completed page color */
 .progress-bar-item.current-page.completed-page,
 .progress-bar-item.previous-page.completed-page,
 .progress-bar-item.future-page.completed-page {
-    background: var(--completedPageColor);
+  background: var(--completedPageColor);
 }
 
 .progress-bar-item.current-page {
-    background: var(--currentPageColor);
-    border-bottom-color: #b9b9b9;
+  background: var(--currentPageColor);
+  border-bottom-color: #b9b9b9;
 }
 
 .progress-bar-item.future-page {
-    background: var(--futurePageColor);
+  background: var(--futurePageColor);
 }
