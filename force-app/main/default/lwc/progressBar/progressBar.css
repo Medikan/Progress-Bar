@@ -60,6 +60,11 @@
     background: var(--completedPageColor);
 }
 
+/* overriding default current page color */
+.progress-bar-item.current-page.completed-page {
+    background: var(--completedPageColor);
+}
+
 .progress-bar-item.current-page {
     background: var(--currentPageColor);
     border-bottom-color: #b9b9b9;
