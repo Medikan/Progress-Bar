@@ -74,11 +74,11 @@ export default class App extends LightningElement {
 	 * Assigns appropriate classes to progress bar items
 	 */
 	get progressBarItemClasses() {
-		let classes = 'progress-bar-item'
+		let classes = 'slds-path__item'
 
-		if (this.isCurrentPage) classes += ' current-page'
-		else if (this.isCompletedPage) classes += ' completed-page'
-		else if (this.isVisitedPage) classes += ' visited-page'
+		if (this.isCurrentPage) classes += ' slds-is-current slds-is-active'
+		else if (this.isCompletedPage) classes += ' slds-is-complete'
+		else classes += ' slds-is-incomplete'
 
 		if (
 			!this.allowSkippingPages &&

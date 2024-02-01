@@ -1,22 +1,54 @@
+<!-- Grabbed original from https://www.lightningdesignsystem.com/components/path/ -->
 <template>
-  <div class="progress-bar-wrap">
-    <div class="progress-bar-start-cap"></div>
+	<div class="slds-path">
+		<div class="slds-grid slds-path__track">
+			<div class="slds-grid slds-path__scroller-container">
+				<div class="slds-path__scroller">
+					<div class="slds-path__scroller_inner">
+						<ul
+							class="slds-path__nav"
+							role="listbox"
+							aria-orientation="horizontal"
+							aria-labelledby="slds-path__stage-name"
+						>
+							<!-- Loop through all the pages and create the progress bar items for each page -->
+							<template
+								for:each={pageNamesArray}
+								for:item="pageName"
+								for:index="index"
+							>
+								<li
+									key={pageName}
+									data-page={pageName}
+									onclick={setPageNavigation}
+									class={progressBarItemClasses}
+									role="presentation"
+								>
+									<a
+										aria-selected="true"
+										class="slds-path__link no-decoration"
+										onclick={setPageNavigation}
+										role="option"
+										tabindex="0"
+									>
+										<span class="slds-path__title no-transform no-decoration"
+											>{pageName}</span
+										>
+									</a>
+								</li>
 
-    <!-- Loop through all the pages and create the progress bar items for each page -->
-    <template for:each={pageNamesArray} for:item="pageName" for:index="index">
-      <button
-        key={pageName}
-        data-page={pageName}
-        onclick={setPageNavigation}
-        class={progressBarItemClasses}
-      >
-        <label>{pageName}</label>
-      </button>
-
-      <!-- hacky way to keep track of current index of loop so I can conditionally show certain elements -->
-      <div key={pageName} style="display: none">{incrementIndexTracker}</div>
-    </template>
-
-    <div class="progress-bar-end-cap"></div>
-  </div>
+								<!-- hacky way to keep track of current index of loop so I can conditionally show certain elements -->
+								<div
+									key={pageName}
+									style="display: none"
+								>
+									{incrementIndexTracker}
+								</div>
+							</template>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </template>

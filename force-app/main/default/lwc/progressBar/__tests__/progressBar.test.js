@@ -62,7 +62,7 @@ describe('c-progress-bar', () => {
 
 		// Assert
 		const progressItems =
-			element.shadowRoot.querySelectorAll('.progress-bar-item')
+			element.shadowRoot.querySelectorAll('.slds-path__item')
 		expect(progressItems.length).toBe(pageNames.split(',').length)
 
 		let currentPageIndex = pageNames.split(',').indexOf(currentPage)
@@ -70,9 +70,9 @@ describe('c-progress-bar', () => {
 			let pageName = pageNames.split(',')[index]
 
 			if (index === currentPageIndex) {
-				expect(item.classList.contains('current-page')).toBe(true)
+				expect(item.classList.contains('slds-is-current')).toBe(true)
 			} else if (visitedPages.split(',').some((x) => x === pageName)) {
-				expect(item.classList.contains('visited-page')).toBe(true)
+				expect(item.classList.contains('disabled')).toBe(false)
 			}
 		})
 	})
@@ -101,14 +101,14 @@ describe('c-progress-bar', () => {
 
 		// Assert
 		const progressItems =
-			element.shadowRoot.querySelectorAll('.progress-bar-item')
+			element.shadowRoot.querySelectorAll('.slds-path__item')
 
 		let currentPageIndex = pageNames.split(',').indexOf(currentPage)
 		progressItems.forEach((item, index) => {
 			if (index === currentPageIndex) {
-				expect(item.classList.contains('current-page')).toBe(true)
+				expect(item.classList.contains('slds-is-current')).toBe(true)
 			} else {
-				expect(item.classList.contains('current-page')).toBe(false)
+				expect(item.classList.contains('slds-is-current')).toBe(false)
 			}
 		})
 	})
@@ -137,15 +137,15 @@ describe('c-progress-bar', () => {
 
 		// Assert
 		const progressItems =
-			element.shadowRoot.querySelectorAll('.progress-bar-item')
+			element.shadowRoot.querySelectorAll('.slds-path__item')
 
 		progressItems.forEach((item, index) => {
 			let pageName = pageNames.split(',')[index]
 
 			if (completedPages.split(',').some((x) => x === pageName)) {
-				expect(item.classList.contains('completed-page')).toBe(true)
+				expect(item.classList.contains('slds-is-complete')).toBe(true)
 			} else {
-				expect(item.classList.contains('completed-page')).toBe(false)
+				expect(item.classList.contains('slds-is-complete')).toBe(false)
 			}
 		})
 	})
@@ -177,7 +177,7 @@ describe('c-progress-bar', () => {
 
 		// Assert
 		const progressItems =
-			element.shadowRoot.querySelectorAll('.progress-bar-item')
+			element.shadowRoot.querySelectorAll('.slds-path__item')
 
 		progressItems.forEach((item, index) => {
 			let pageName = pageNames.split(',')[index]
@@ -218,7 +218,7 @@ describe('c-progress-bar', () => {
 
 		// Assert
 		const progressItems =
-			element.shadowRoot.querySelectorAll('.progress-bar-item')
+			element.shadowRoot.querySelectorAll('.slds-path__item')
 		expect(progressItems.length).toBe(0)
 	})
 
@@ -246,7 +246,7 @@ describe('c-progress-bar', () => {
 
 		// Assert
 		const progressItems = element.shadowRoot.querySelectorAll(
-			'.progress-bar-item.current-page',
+			'.slds-path__item.slds-is-current',
 		)
 		expect(progressItems.length).toBe(0)
 	})
@@ -274,7 +274,7 @@ describe('c-progress-bar', () => {
 
 		// Assert
 		const progressItems = element.shadowRoot.querySelectorAll(
-			'.progress-bar-item.completed-page',
+			'.slds-path__item.slds-is-complete',
 		)
 		expect(progressItems.length).toBe(0)
 	})
