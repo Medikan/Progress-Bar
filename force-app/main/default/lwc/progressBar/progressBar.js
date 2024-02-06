@@ -134,9 +134,11 @@ export default class App extends LightningElement {
 	setPageNavigation(event) {
 		let targetPage = event.currentTarget.dataset.page
 
+		// Do nothing if user hasn't visited/completed the page and the admin doesn't want the user skipping to unvisited pages
 		if (
 			!this.allowSkippingPages &&
-			this.visitedPagesArray.indexOf(targetPage) === -1
+			(this.visitedPagesArray.indexOf(targetPage) === -1 ||
+				this.completedPagesArray.indexOf(targetPage) === -1)
 		) {
 			return
 		}
