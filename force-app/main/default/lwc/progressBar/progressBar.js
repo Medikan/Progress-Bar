@@ -4,8 +4,6 @@ import { FlowNavigationNextEvent } from 'lightning/flowSupport'
 /**
  * Progress Bar component for Screen Flows
  *
- * TODO: have flag that only allows users to visit completed or visited pages. Must use standard navigation to go to future ones
- *
  * @prop pageNames
  * @prop currentPage
  * @prop visitedPages
